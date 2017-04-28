@@ -15,10 +15,10 @@ class Clock extends React.Component {
     this.setState((previousState) => ({
       seconds: previousState.seconds + 1
     }));
-      if (this.state.seconds > 59) {
-        this.setState({minutes: minutes + 1, seconds: 0
-        });
-      }
+    if (this.state.seconds > 59) {
+      this.setState({minutes: [minutes] + 1, seconds: 0
+      });
+    }
   }
   componentDidMount() {
     this.interval = setInterval(() => this.tick(), 1000);
