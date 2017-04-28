@@ -11,10 +11,14 @@ class Clock extends React.Component {
       hours: 0,
     }
   }
-  tick() {
+  tick(minutes,seconds,) {
     this.setState((previousState) => ({
       seconds: previousState.seconds + 1
     }));
+      if (this.state.seconds > 59) {
+        this.setState({minutes: minutes + 1, seconds: 0
+        });
+      }
   }
   componentDidMount() {
     this.interval = setInterval(() => this.tick(), 1000);
@@ -22,12 +26,7 @@ class Clock extends React.Component {
   componentWillUnmount() {
     clearInterval(this.interval);
   }
-  timeM(seconds, minutes) {
-    if (this.state.seconds > 59) {
-      this.setState({minutes: minutes + 1, seconds: 0
-      });
-    }
-  }
+
   render() {
     return (
       <div className="Clock">
