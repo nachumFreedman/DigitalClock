@@ -22,10 +22,10 @@ class Clock extends React.Component {
   componentWillUnmount() {
     clearInterval(this.interval);
   }
-  timeM(seconds) {
+  timeM(seconds, minutes) {
     if (this.state.seconds > 59) {
-      this.setState.minutes(this.state.minutes + 1) &&
-      this.setState.seconds(0)
+      this.setState({minutes: minutes + 1, seconds: 0
+      });
     }
   }
   render() {
