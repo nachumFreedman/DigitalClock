@@ -16,8 +16,8 @@ class Clock extends React.Component {
       seconds: previousState.seconds + 1
     }));
     if (this.state.seconds > 59) {
-      this.setState({minutes: previousState.minutes + 1, seconds: 0
-      });
+      this.setState((previousState) => ({minutes: previousState.minutes + 1, seconds: 0
+      }));
     }
   }
   componentDidMount() {
