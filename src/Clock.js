@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './Clock.css';
 
-class Clock extends React.Component {
+class Clock extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -16,7 +16,7 @@ class Clock extends React.Component {
       seconds: previousState.seconds + 1
     }));
     if (this.state.seconds > 59) {
-      this.setState((previousState) => ({minutes: previousState.minutes + 1, seconds: 0
+      this.setState((previousState) => ({minutes: previousState.minutes + 1, seconds: 0 % 60
       }));
     }
   }
