@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './Clock.css';
 
 class Clock extends Component {
@@ -7,19 +6,27 @@ class Clock extends Component {
     super(props)
     this.state = {
       seconds: 57,
-      minutes: 0,
+      minutes: 59,
       hours: 0,
     }
   }
-  tick(minutes,seconds,) {
-    this.setState((previousState) => ({
-      seconds: previousState.seconds + 1
-    }));
-    if (this.state.seconds > 59) {
-      this.setState((previousState) => ({minutes: previousState.minutes + 1, seconds: 0 % 60
-      }));
+  tick() {
+    if (this.state.seconds % 60 === 59) {
+      this.setState((previousState) =>
+      ({minutes: (previousState.minutes + 1)%60}))
     }
+    if ((this.state.minutes % 60 === 59) &&
+    (this.state.seconds % 60 === 59)) {
+      console.log('b')
+      this.setState((previousState) =>
+      ({hours: previousState.hours + 1}))
+    }
+    this.setState((previousState) => ({
+      seconds: (previousState.seconds + 1) % 60
+    }))
+
   }
+
   componentDidMount() {
     this.interval = setInterval(() => this.tick(), 1000);
   }
@@ -30,15 +37,10 @@ class Clock extends Component {
   render() {
     return (
       <div className="Clock">
-      <div className="Clock-header">
-      <img src={logo} className="Clock-logo" alt="logo" />
-      <h2>Welcome to React</h2>
-      </div>
-      <p className="Clock-intro">
-      To get started, edit <code>src/Clock.js</code> and save to reload.
-      </p>
-      <div>seconds: {this.state.seconds}</div>
-      <div>minutes: {this.state.minutes}</div>
+        <div>seconds: {this.state.seconds}</div>
+        <div>minutes: {this.state.minutes}</div>
+        <div>hours: {this.state.hours}</div>
+
       </div>
     );
   }
